@@ -4,7 +4,7 @@ from DAO.ControleBD import ControleBD
 
 class RemedioDAO:
     def __cursorListaDeRemedio(self, cursor): 
-        cursor = ControleBD()
+        cursor = ControleBD().cursor
         linha = cursor.fetchone() #Criando linhas
         listaDeLinhas = [] #Lista vazia para armazenar linhas
     
@@ -82,7 +82,7 @@ class RemedioDAO:
             return buscaNome
         
         else:
-            buscaCategoria = ("SELECT * FROM Remedio WHERE nome = ?", )
+            buscaCategoria = ("SELECT * FROM Remedio WHERE nome = ?", cat.categoria)
             return buscaCategoria
 
     
