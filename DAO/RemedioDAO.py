@@ -75,7 +75,7 @@ class RemedioDAO:
     def listaPorNomeOuCategoria(self, nomeRemedioOuCategoria):
         cursor = ControleBD().cursor()
         droga = remedio.Remedio()
-        categoria = 
+        cat = categoria.Categoria()
 
         if hasattr(nomeRemedioOuCategoria, "nomeRemedio"):
             buscaNome = ("SELECT * FROM Remedio WHERE nome = ?", droga.nomeRemedio)
