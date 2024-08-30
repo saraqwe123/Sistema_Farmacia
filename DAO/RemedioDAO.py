@@ -1,9 +1,10 @@
 import ENTITIES.Remedio as remedio
+import ENTITIES.Categoria as categoria
 from DAO.ControleBD import ControleBD
 
 class RemedioDAO:
     def __cursorListaDeRemedio(self, cursor): 
-        cursor = ControleBD()
+        cursor = ControleBD().cursor
         linha = cursor.fetchone() #Criando linhas
         listaDeLinhas = [] #Lista vazia para armazenar linhas
     
@@ -40,39 +41,62 @@ class RemedioDAO:
         else:
             return None
         
-    def atualiza(self, ean13):
+    def atualizaOuCria(self, rem):
         cursor = ControleBD().cursor()
         droga = remedio.Remedio()
         
-        if hasattr(droga, "ean13"):
-            atualizacao = ""
+        if hasattr(rem, "ean13"):
+            atualizacao = ("UPDATE Remedio SET nomeRemedio=?, ean13=?, ncm=?, precoVenda=?, fabricante=?, registroMS=?, substancia=? WHERE ean13=?", droga.nomeRemedio, droga.ean13, droga.ncm, droga.precoVenda, droga.fabricante, droga.registroMS, droga.substancia)
             cursor.execute(atualizacao)
         
         else:
-            criar = ""
+            criar = "INSERT INTO Remedio (nomeRemedio, ean13, ncm, precoVenda, fabricante, registroMS, substancia) VALUES (?,?,?,?,?,?,?)", droga.nomeRemedio, droga.ean13, droga.ncm, droga.precoVenda, droga.fabricante, droga.registroMS, droga.substancia
             cursor.execute(criar)
         
         cursor.close()        
         return True
+    
+    
+    def delete(self, rem):
+        cursor = ControleBD().cursor()
+        droga = remedio.Remedio()
+        
+        if hasattr(rem, "ean13"):
+            deletacao = ("DELETE Remedio SET nomeRemedio=?, ean13=?, ncm=?, precoVenda=?, fabricante=?, registroMS=?, substancia=? WHERE ean13=?", droga.ean13)
+            cursor.execute(deletacao)
+        
+        else:
+            return "Não foi possível encontrar o remédio solicitado"
+         
+        cursor.close()        
+        return True
+    
+    
+    def listaPorNomeOuCategoria(self, nomeRemedioOuCategoria):
+        cursor = ControleBD().cursor()
+        droga = remedio.Remedio()
+        cat = categoria.Categoria()
+
+        if hasattr(nomeRemedioOuCategoria, "nomeRemedio"):
+            buscaNome = ("SELECT * FROM Remedio WHERE nome = ?", droga.nomeRemedio)
+            return buscaNome
+        
+        else:
+            buscaCategoria = ("SELECT * FROM Remedio WHERE nome = ?", cat.categoria)
+            return buscaCategoria
+
+    
+     
 
 """
-    #def update(self, produto):
-    #  connection = DBController().obterConnection();
-    #  cursor = connection.cursor()
-    #
-    #  if not hasattr(produto, 'id'):
-    #    cursor.execute('INSERT INTO Produto (nome, quantidade, validade, precoUltimaCompra, dataFabricacao) VALUES(?, ?, ?, ?, ?, ?)',
-    #      nome, quantidade, validade, descricao, precoUltimaCompra, dataFabricacao)
-    #  else:
-    #    cursor.execute('UPDATE Produto SET nome=?, quantidade=?, validade=?, precoUltimaCompra=?, dataFabricacao=? WHERE id = ?',
-    #      nome, quantidade, validade, descricao, precoUltimaCompra, dataFabricacao, id)
-    # 
-    #  cursor.close()
-    #  connection.close()
-    #  return True
+        self.nomeRemedio = ""
+        self.ean13 = ""
+        self.ncm = 0
+        self.precoVenda = 0.0
+        self.fabricante = ""            
+        self.registroMS = ""
+        self.substancia = ""
 
-    def delete(self, produto):
-        return None
 
     def listByNome(self, nome):
       connection = DBController().obterConnection();
