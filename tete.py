@@ -22,3 +22,14 @@ pessoaFisica.nome = pessoa.nome
 pessoaFisica.cpf = "11122233344"
 
 print(pessoaFisica.nome)
+
+
+def div(a, b):
+    try:
+        return a/b
+    
+    except Exception as e:
+        return f"erro: {e}"
+    
+
+print(div(1, 0))
