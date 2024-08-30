@@ -4,7 +4,7 @@ from DAO.ControleBD import ControleBD
 
 class RemedioDAO:
     def __cursorListaDeRemedio(self, cursor): 
-        cursor = ControleBD().cursor
+        cursor = ControleBD().cursor()
         linha = cursor.fetchone() #Criando linhas
         listaDeLinhas = [] #Lista vazia para armazenar linhas
     
@@ -23,6 +23,8 @@ class RemedioDAO:
         rem.precoVenda = linha["preço de venda"]
         rem.registroMS = linha["registro MS"]
         rem.substancia = linha["substancia"]
+        rem.dcb = linha["descricaoDCB"]
+        rem.quantidadeUnitaria = linha["quantidadeUnitaria"]
         return rem
 
     def criaRemedio(self):
@@ -79,48 +81,8 @@ class RemedioDAO:
 
         if hasattr(nomeRemedioOuCategoria, "nomeRemedio"):
             buscaNome = ("SELECT * FROM Remedio WHERE nome = ?", droga.nomeRemedio)
-            return buscaNome
+            return cursor.execute(buscaNome)
         
         else:
             buscaCategoria = ("SELECT * FROM Remedio WHERE nome = ?", cat.categoria)
-            return buscaCategoria
-
-    
-     
-
-"""
-        self.nomeRemedio = ""
-        self.ean13 = ""
-        self.ncm = 0
-        self.precoVenda = 0.0
-        self.fabricante = ""            
-        self.registroMS = ""
-        self.substancia = ""
-
-
-    def listByNome(self, nome):
-      connection = DBController().obterConnection();
-      cursor = connection.cursor()
-
-      cursor.execute('SELECT * FROM Produto WHERE nome = ?', nome)
-      
-      result = self.__cursorToListOfProduto(cursor)
-     
-      cursor.close()
-      connection.close()
-
-      return result
-
-    def listByEan13(self, ean13):
-      connection = DBController().obterConnection();
-      cursor = connection.cursor()
-
-      cursor.execute('SELECT * FROM Produto WHERE ean13 = ?', ean13)
-      
-      result = self.__cursorToListOfProduto(cursor)
-     
-      cursor.close()
-      connection.close()
-
-      return result
-"""
+            return cursor.execute(buscaCategoria)

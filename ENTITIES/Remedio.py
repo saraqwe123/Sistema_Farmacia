@@ -7,5 +7,5 @@ class Remedio:
         self.fabricante = ""            
         self.registroMS = ""
         self.substancia = ""
-        
-    
+        self.dcb = ""
+        self.quantidadeUnitaria = "" 
