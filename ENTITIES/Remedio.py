@@ -4,8 +4,8 @@ class Remedio:
         self.ean13 = ""
         self.ncm = 0
         self.precoVenda = 0.0
-        self.fabricante = ""            
+        self.fabricante = ""
         self.registroMS = ""
         self.substancia = ""
         self.dcb = ""
-        self.quantidadeUnitaria = "" 
+        self.quantidadeUnitaria = ""
