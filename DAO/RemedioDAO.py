@@ -1,5 +1,4 @@
 import ENTITIES.Remedio as remedio
-import ENTITIES.Categoria as categoria
 from DAO.ControleBD import ControleBD
 
 class RemedioDAO:
@@ -9,11 +8,11 @@ class RemedioDAO:
         listaDeLinhas = [] #Lista vazia para armazenar linhas
     
         for i in range(len(linha)):
-            listaDeLinhas.append(self.__pegaInfoRemedio(linha)) #Coloca cada linha do bd na lista
+            listaDeLinhas.append(self.pegaInfoRemedio(linha)) #Coloca cada linha do bd na lista
 
         return listaDeLinhas
     
-    def __pegaInfoRemedio(self, linha):
+    def pegaInfoRemedio(self, linha):
         rem = remedio.Remedio() 
         #Cada linha do bd transformado em Objeto
         rem.nomeRemedio = linha["nome"]
@@ -38,7 +37,7 @@ class RemedioDAO:
         linha = cursor.fetchone()
         
         if linha is not None:
-            return self.__pegaInfoRemedio(linha)
+            return self.pegaInfoRemedio(linha)
         
         else:
             return None
