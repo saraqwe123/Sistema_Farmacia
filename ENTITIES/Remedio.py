@@ -8,4 +8,4 @@ class Remedio:
         self.registroMS = ""
         self.substancia = ""
         self.dcb = ""
-        self.quantidadeUnitaria = ""
+        self.quantidadeUnitaria = 0

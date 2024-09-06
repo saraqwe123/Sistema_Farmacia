@@ -57,8 +57,7 @@ class RemedioDAO:
         
         cursor.close()        
         return True
-    
-    
+        
     def delete(self, rem):
         cursor = ControleBD().cursor()
         droga = remedio.Remedio()
@@ -72,17 +71,15 @@ class RemedioDAO:
          
         cursor.close()        
         return True
-    
-    
-    def listaPorNomeOuCategoria(self, nomeRemedioOuCategoria):
+        
+    def listaPorNomeOuEAN13(self, nomeRemedioOuEAN13):
         cursor = ControleBD().cursor()
         droga = remedio.Remedio()
-        cat = categoria.Categoria()
 
-        if hasattr(nomeRemedioOuCategoria, "nomeRemedio"):
+        if hasattr(nomeRemedioOuEAN13, "nomeRemedio"):
             buscaNome = ("SELECT * FROM Remedio WHERE nome = ?", droga.nomeRemedio)
             return cursor.execute(buscaNome)
         
         else:
-            buscaCategoria = ("SELECT * FROM Remedio WHERE nome = ?", cat.categoria)
-            return cursor.execute(buscaCategoria)
+            buscaEAN13 = ("SELECT * FROM Remedio WHERE nome = ?", droga.ean13)
+            return cursor.execute(buscaEAN13)
