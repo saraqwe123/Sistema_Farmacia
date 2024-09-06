@@ -2,13 +2,10 @@ from DAO.RemedioDAO import RemedioDAO
 from DVO.RemedioDVO import CodigoBarraEAN13
 
 class RemedioMGR:
-    def buscaRemedio(self, nomeRemedioOuEAN13):
+    def buscaRemedio(self, nomeRemedio):
         self.dvoRem = CodigoBarraEAN13()
         self.daoRem = RemedioDAO()
-        if self.dvoRem.validarEAN13(): # Retorna um valor booleano se é ou não um ean13
-            return f"EAN13: {self.daoRem.listaPorNomeOuEAN13(nomeRemedioOuEAN13)}"
-        else:
-            return f"nome: {self.daoRem.listaPorNomeOuEAN13(nomeRemedioOuEAN13)}"
+        self.daoRem.listaPorNome(nomeRemedio)
 
     def cadastroRemedio(self, remedio):
         self.dvoRem.validarEAN13()

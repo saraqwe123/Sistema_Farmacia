@@ -71,14 +71,11 @@ class RemedioDAO:
         cursor.close()        
         return True
         
-    def listaPorNomeOuEAN13(self, nomeRemedioOuEAN13):
+    def listaPorNome(self, nomeRemedio):
         cursor = ControleBD().cursor()
         droga = remedio.Remedio()
+        buscaNome = ("SELECT * FROM Remedio WHERE nome = ?", nomeRemedio)
+        return cursor.execute(buscaNome)
 
-        if hasattr(nomeRemedioOuEAN13, "nomeRemedio"):
-            buscaNome = ("SELECT * FROM Remedio WHERE nome = ?", droga.nomeRemedio)
-            return cursor.execute(buscaNome)
         
-        else:
-            buscaEAN13 = ("SELECT * FROM Remedio WHERE nome = ?", droga.ean13)
-            return cursor.execute(buscaEAN13)
+    
