@@ -25,4 +25,9 @@ class FornecedorDAO:
         Fornecedores.infc = linha["infc"]
         Fornecedores.telefone = linha["telefone"]
         
-        
+    def fornecedorExiste(self, fornecedor):
+        query = "SELECT nomeFornecedor FROM fornecedor WHERE nomeFornecedor = ?"
+        cursor = ControleBD().cursor()
+        cursor.execute(query, (fornecedor))
+        resultado = cursor.fetchone()
+        return resultado is not None
