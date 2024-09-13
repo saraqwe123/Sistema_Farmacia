@@ -1,5 +1,7 @@
 from DAO.RemedioDAO import RemedioDAO
+from DAO.CategoriaDAO import CategoriaDAO
 from DVO.RemedioDVO import CodigoBarraEAN13
+
 
 class RemedioMGR:
     def buscaRemedio(self, nomeRemedio):
@@ -8,6 +10,7 @@ class RemedioMGR:
         self.daoRem.listaPorNome(nomeRemedio)
 
     def cadastroRemedio(self, remedio):
+        if CategoriaDAO()
         self.dvoRem.validarEAN13()
         self.dvoRem.verificaNCM()
         self.dvoRem.verificaSubstanciaMS()
