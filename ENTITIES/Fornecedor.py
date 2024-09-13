@@ -1,0 +1,15 @@
+class Fornecedor:
+    def __init__(self):
+        self.nomeFornecedor = ""
+        self.nomeSocio = ""
+        self.cnpj = ""
+        self.infc = ""
+        self.endereco = ""
+        self.numero = ""
+        self.complemento = ""
+        self.cep = ""
+        self.bairro = ""
+        self.cidade = ""
+        self.telefone = ""
+        self.email = ""
+        self.dataCadastro = ""

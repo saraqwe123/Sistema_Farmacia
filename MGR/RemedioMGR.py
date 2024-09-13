@@ -15,5 +15,8 @@ class RemedioMGR:
         self.daoRem.pegaInfoRemedio()
         return self.daoRem.atualizaOuCria(remedio)
     
+    def buscaFornecedor(self, fornecedor):
+        pass
+    
 mgr = RemedioMGR()
 mgr.cadastroRemedio()
