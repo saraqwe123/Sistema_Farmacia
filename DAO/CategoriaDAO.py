@@ -12,4 +12,10 @@ class CategoriaDAO:
     def pegaInfoCategoria(self, linha):
         categorias = categoria.Categoria()
         categorias.categoria = linha["categoria"]
-        
+
+    def categoriaExiste(self, categoria):
+        query = "SELECT * FROM categoria WHERE categoria = ?"
+        cursor = ControleBD().cursor()
+        cursor.execute(query, (categoria))
+        resultado = cursor.fetchone()
+        return resultado is not None
