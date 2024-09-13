@@ -10,13 +10,15 @@ class RemedioMGR:
         self.daoRem.listaPorNome(nomeRemedio)
 
     def cadastroRemedio(self, remedio):
-        if CategoriaDAO()
-        self.dvoRem.validarEAN13()
-        self.dvoRem.verificaNCM()
-        self.dvoRem.verificaSubstanciaMS()
-        self.daoRem.criaRemedio()
-        self.daoRem.pegaInfoRemedio()
-        return self.daoRem.atualizaOuCria(remedio)
+        if CategoriaDAO().categoriaExiste(categoria):
+            self.dvoRem.validarEAN13()
+            self.dvoRem.verificaNCM()
+            self.dvoRem.verificaSubstanciaMS()
+            self.daoRem.criaRemedio()
+            self.daoRem.pegaInfoRemedio()
+            return self.daoRem.atualizaOuCria(remedio)
+        else:
+            return "Categoria não cadastrada!!!!!!!!!!!"
     
     def buscaFornecedor(self, fornecedor):
         pass
