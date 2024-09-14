@@ -1,6 +1,7 @@
 from DAO.RemedioDAO import RemedioDAO
 from DAO.CategoriaDAO import CategoriaDAO
 from DVO.RemedioDVO import CodigoBarraEAN13
+from DAO.FornecedorDAO import FornecedorDAO
 
 
 class RemedioMGR:
@@ -11,15 +12,15 @@ class RemedioMGR:
 
     def buscaCategoria(self, categoria):
         if CategoriaDAO().categoriaExiste(categoria):
-            return true
-        return false
+            return True
+        return False
     
     def buscaFornecedor(self, fornecedor):
         if FornecedorDAO().fornecedorExiste(fornecedor):
-            return true
-        return false
+            return True
+        return False
     
-    def cadastroRemedio(self, remedio, categoria):
+    def cadastroRemedio(self, remedio, categoria, fornecedor):
         if self.buscaCategoria(categoria) and self.buscaFornecedor(fornecedor):
             self.dvoRem.validarEAN13()
             self.dvoRem.verificaNCM()
